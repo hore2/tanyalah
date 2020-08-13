@@ -20,7 +20,7 @@ class PertanyaanController extends Controller
             "judul" => $request["judul"],
             "isi" => $request["isi"]
         ]);
-        // dd($pertanyaan);        
+        // dd($pertanyaan);     
         return redirect ('/pertanyaan')->with('success', 'Pertanyaan berhasil ditambahkan');
     }
 

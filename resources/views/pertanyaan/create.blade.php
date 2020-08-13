@@ -4,9 +4,9 @@
             <div class="card-header">
                 <h3 class="card-title">Buat Pertanyaan Baru</h3>
             </div>
-            
-            <form role="form" action="/pertanyaan" method="POST">
+            <form role="form" action="/pertanyaan" method="POST" action="{{ route('pertanyaan.store') }}" accept-charset="utf-8">
             @csrf
+            @method('POST')
               <div class="card-body">
                 <div class="form-group"> <!--judul, isi, tgl dibuat, tgl diperbarui, profil id-->
                   <label for="judul">Judul pertanyaan</label>
@@ -18,15 +18,14 @@
                     <label for="nama">Isi Pertanyaan</label>
                     <textarea class="form-control" rows="3" value="{{ old('isi'),'' }}" placeholder="Silakan ditumpahkan kebingungannya ..." id="isi" name="isi"></textarea>
                 </div>
-                <div class="form-group">
+            <!--    <div class="form-group">
                     <label for="nama">Tanggal dibuat</label>
-                    
                     <input type="text" name="tgl_dibuat" id="tgl_dibuat" class="form-control form-control-sm" placeholder="(yyyy-mm-dd)">
                 </div>
                 <div class="form-group">
                     <label for="nama">Tanggal diperbarui</label>
                     <input type="text" class="form-control" name="tgl_diperbarui" id="tgl_diperbarui" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
-                </div>
+                </div>  -->
              
               </div>
               <!-- /.box-body -->
