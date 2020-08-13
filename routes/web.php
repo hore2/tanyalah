@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::resource('pertanyaan', 'PertanyaanController');
