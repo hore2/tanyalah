@@ -12,19 +12,30 @@ class CreatePertanyaanTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {/*
         Schema::create('pertanyaan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->timestamps();
             $table->string('judul', 45);
             $table->string('isi', 255);
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
-
             $table->unsignedBigInteger('jawaban_tepat_id');
             $table->foreign('jawaban_tepat_id')->references('id')->on('jawaban');
             $table->unsignedBigInteger('profil_id');
             $table->foreign('profil_id')->references('id')->on('profil');
+        }); */
+        Schema::create('pertanyaan', function (Blueprint $table) {
+            $table->integerIncrements('pertanyaan_id'); 
+            $table->string('judul', 100);
+            $table->longText('isi');
+            $table->integer('profil_id')->index();
+            $table->integer('jawaban_tepat_id')->index();
             $table->timestamps();
+        });
+
+        Schema::table('pertanyaan', function (Blueprint $table) {
+            $table->foreign('profil_id')->references('profil_id')->on('profil')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('jawaban_tepat_id')->references('jawaban_id')->on('jawaban')->onUpdate('cascade')->onDelete('cascade');
+            
         });
     }
 
@@ -36,5 +47,8 @@ class CreatePertanyaanTable extends Migration
     public function down()
     {
         Schema::dropIfExists('pertanyaan');
+        Schema::table('pertanyaan', function($table) {
+            $table->dropForeign('profil_id');
+         });
     }
 }

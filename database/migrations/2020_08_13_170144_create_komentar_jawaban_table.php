@@ -16,13 +16,14 @@ class CreateKomentarJawabanTable extends Migration
         Schema::create('komentar_jawaban', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('isi', 255);
-            $table->unsignedBigInteger('jawaban_id')->nullable();
-            $table->unsignedBigInteger('profil_id')->nullable();
-
-            $table->foreign('jawaban_id')->references('id')->on('jawaban');
-            $table->foreign('profil_id')->references('id')->on('profil');
+            $table->integer('profil_id')->index()->unsigned();
+            $table->integer('jawaban_id')->index()->unsigned();
             $table->timestamps();
         });
+        Schema::table('komentar_jawaban', function (Blueprint $table) {
+            $table->foreign('profil_id')->references('profil_id')->on('profil_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('jawaban_id')->references('jawaban_id')->on('jawaban')->onUpdate('cascade')->onDelete('cascade');       
+    });
     }
 
     /**
@@ -33,5 +34,8 @@ class CreateKomentarJawabanTable extends Migration
     public function down()
     {
         Schema::dropIfExists('komentar_jawaban');
+        Schema::table('komentar_jawaban', function($table) {
+            $table->dropForeign(['profil_id'],['jawaban_id']);
+         });
     }
 }
