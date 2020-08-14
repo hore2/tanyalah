@@ -15,10 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-<<<<<<< HEAD
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-=======
 Route::resource('pertanyaan', 'PertanyaanController');
->>>>>>> 18d06554692d1471e07db3c9c6932f2be9649de6

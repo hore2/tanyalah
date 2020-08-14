@@ -15,12 +15,12 @@ class CreateLikeDislikeJawabanTable extends Migration
     {
         Schema::create('like_dislike_jawaban', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('jawaban_id')->nullable();
-            $table->unsignedBigInteger('profil_id')->nullable();
-
-            $table->foreign('jawaban_id')->references('id')->on('jawaban');
-            $table->foreign('profil_id')->references('id')->on('profil');
             $table->timestamps();
+            $table->integer('profil_id')->index()->unsigned();
+            $table->integer('jawaban_id')->index()->unsigned();
+            $table->foreign('profil_id')->references('profil_id')->on('profil_id')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('jawaban_id')->references('jawaban_id')->on('jawaban')->onUpdate('cascade')->onDelete('cascade');
+       
         });
     }
 
@@ -32,5 +32,8 @@ class CreateLikeDislikeJawabanTable extends Migration
     public function down()
     {
         Schema::dropIfExists('like_dislike_jawaban');
+        Schema::table('like_dislike_jawaban', function($table) {
+            $table->dropForeign(['profil_id'],['jawaban_id']);
+         });
     }
 }
