@@ -24,13 +24,6 @@ class PertanyaanController extends Controller
         return redirect ('/pertanyaan')->with('success', 'Pertanyaan berhasil ditambahkan');
     }
 
-    // menambah jawaban
-    // public function storeJawaban(Request $request){
-    //     $query = DB::table('jawaban')->insert([
-    //         "isi" => $request["isi"]
-    //     ]);
-    //     return view ('/pertanyaan.show')->with('success', 'Jawaban berhasil ditambah');
-    // }
 
     // menuju halaman create 
     public function create(){
