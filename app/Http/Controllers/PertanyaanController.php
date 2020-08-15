@@ -16,13 +16,21 @@ class PertanyaanController extends Controller
 
     // menambah list pertanyaan
     public function store(Request $request){
-        $pertanyaan = Pertanyaan::create([
+        $query = DB::table('pertanyaan')->insert([
             "judul" => $request["judul"],
             "isi" => $request["isi"]
         ]);
         // dd($pertanyaan);     
         return redirect ('/pertanyaan')->with('success', 'Pertanyaan berhasil ditambahkan');
     }
+
+    // menambah jawaban
+    // public function storeJawaban(Request $request){
+    //     $query = DB::table('jawaban')->insert([
+    //         "isi" => $request["isi"]
+    //     ]);
+    //     return view ('/pertanyaan.show')->with('success', 'Jawaban berhasil ditambah');
+    // }
 
     // menuju halaman create 
     public function create(){
@@ -36,7 +44,7 @@ class PertanyaanController extends Controller
         return view('pertanyaan.show', compact('pertanyaan'));
     }
 
-    // update list pertanyaan
+    // update list pertanyaan / edit
     public function update($id, Request $request){
         $query = DB::table('pertanyaan')
                     -> where('id', $id)
