@@ -29,8 +29,8 @@
             <td>{{$key+1}} </td>
             <td> {{$pertanyaan->judul}}</td>
             <td> {{$pertanyaan->isi}}</td>
-            <td>{{$pertanyaan->tgl_dibuat}}</td>
-            <td>{{$pertanyaan->tgl_diperbarui}}</td>
+            <td>{{$pertanyaan->created_at}}</td>
+            <td>{{$pertanyaan->updated_at}}</td>
             <td> <a href="/pertanyaan/{{$pertanyaan->tanya_id}}" class="btn btn-info btn-sm">show</a> </td>
           </tr>
          @endforeach
