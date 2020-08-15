@@ -18,7 +18,7 @@
           </div>
       @endif
       
-        <table id="list-pertanyaan" class="table table-bordered table-striped">
+        <table id="list-pertanyaan" class="table table-bordered table-striped text-center">
           <thead>
           <tr>
             <th>No</th>
@@ -37,7 +37,17 @@
             <td> {{$tanya->isi}}</td>
             <td>{{$tanya->created_at}}</td>
             <td>{{$tanya->updated_at}}</td>
-            <td> <a href="/pertanyaan/{{$tanya->id}}" class="btn btn-info btn-sm">show</a> </td>
+            <td> 
+            <a href="/pertanyaan/{{$tanya->id}}" class="btn btn-info btn-sm">show</a> 
+            <a  class="btn btn-sm btn-dark" href="/mempertanyakan/{{$tanya->id}}/edit">Edit</a>
+              <div class="mt-1">
+              <form action="/mempertanyakan/{{$tanya->id}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+              </form>
+              </div>
+            </td>
           </tr>
         @endforeach
         </tbody>
