@@ -1,23 +1,16 @@
 @extends('layouts.master')
 @section('content')
-
 <div class="card mt-2">
-  <div class="card">
       <div class="card-header">
-      <td style="display: flex;">
-          <h3 class="card-title">Data Pertanyaan</h3>
-          <a class="form-inline my-2 my-lg-0 btn btn-primary mb-2" href="/pertanyaan/create">Buat pertanyaan baru</a>
-      </td>
-          
+        <h3 class="card-title">Data Pertanyaan</h3>
       </div>
       <!-- /.card-header -->
       <div class="card-body">
       @if(session('success'))
-          <div class="alert alert-success">
-          {{ session('success')}}
-          </div>
+        <div class="alert alert-success">
+        {{ session('success')}}
+        </div>
       @endif
-<<<<<<< HEAD
       <a class="btn btn-primary mb-2" href="/pertanyaan/create">Buat pertanyaan baru</a>
         <table id="list-pertanyaan" class="table table-bordered table-striped">
           <thead>
@@ -38,22 +31,24 @@
             <td> {{$pertanyaan->isi}}</td>
             <td>{{$pertanyaan->created_at}}</td>
             <td>{{$pertanyaan->updated_at}}</td>
-            <td> <a href="/pertanyaan/{{$pertanyaan->tanya_id}}" class="btn btn-info btn-sm">show</a> </td>
+            
+            <td style="display: flex;"> 
+              <a href="/pertanyaan/{{$pertanyaan->id}}" class="btn btn-info btn-sm">show</a>
+              <a href="/pertanyaan/{{$pertanyaan->id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                  <form action="/pertanyaan/{{$pertanyaan->id}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                      <input type="submit" value="delete" class="btn btn-danger btn-sm">
+                  </form>
+            </td>
           </tr>
          @endforeach
         </tbody>
-=======
->>>>>>> f684de98008e2818a55c63c20b30eb1d761240fb
 
-      @foreach($pertanyaan as $key => $pertanyaan)
-          <h5 class="card-title"> <a href="/pertanyaan/{{$pertanyaan->id}}">{{$pertanyaan->judul}}</a> </h5>
-          <p class="card-text">{{$pertanyaan->isi}}</p>
-          <!-- <a href="/pertanyaan/{{$pertanyaan->id}}" class="btn btn-info btn-sm">show</a> -->
-      @endforeach
+        </table>
       </div>
-      
-  </div>
-</div>
+      <!-- /.card-body -->
+    </div>
 
 
 @endsection
