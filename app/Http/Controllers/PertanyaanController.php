@@ -7,6 +7,11 @@ use DB;
 
 class PertanyaanController extends Controller
 {
+    //Auth
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     // index / halaman awal
     public function index(){
         $pertanyaan = DB::table('pertanyaan')->get();
