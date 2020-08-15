@@ -15,6 +15,7 @@ class PertanyaanController extends Controller
     // index / halaman awal
     public function index(){
         $pertanyaan = DB::table('pertanyaan')->get();
+
         // dd($pertanyaan);
         return view('pertanyaan.index', compact('pertanyaan'));
     }

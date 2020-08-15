@@ -17,8 +17,7 @@
           {{ session('success')}}
           </div>
       @endif
-<<<<<<< HEAD
-      <a class="btn btn-primary mb-2" href="/pertanyaan/create">Buat pertanyaan baru</a>
+      
         <table id="list-pertanyaan" class="table table-bordered table-striped">
           <thead>
           <tr>
@@ -31,25 +30,18 @@
           </tr>
           </thead>
           <tbody>
-         @foreach($pertanyaan as $key => $pertanyaan)
-         <tr>
+        @foreach($pertanyaan as $key => $tanya)
+        <tr>
             <td>{{$key+1}} </td>
-            <td> {{$pertanyaan->judul}}</td>
-            <td> {{$pertanyaan->isi}}</td>
-            <td>{{$pertanyaan->created_at}}</td>
-            <td>{{$pertanyaan->updated_at}}</td>
-            <td> <a href="/pertanyaan/{{$pertanyaan->tanya_id}}" class="btn btn-info btn-sm">show</a> </td>
+            <td> {{$tanya->judul}}</td>
+            <td> {{$tanya->isi}}</td>
+            <td>{{$tanya->created_at}}</td>
+            <td>{{$tanya->updated_at}}</td>
+            <td> <a href="/pertanyaan/{{$tanya->id}}" class="btn btn-info btn-sm">show</a> </td>
           </tr>
-         @endforeach
+        @endforeach
         </tbody>
-=======
->>>>>>> f684de98008e2818a55c63c20b30eb1d761240fb
 
-      @foreach($pertanyaan as $key => $pertanyaan)
-          <h5 class="card-title"> <a href="/pertanyaan/{{$pertanyaan->id}}">{{$pertanyaan->judul}}</a> </h5>
-          <p class="card-text">{{$pertanyaan->isi}}</p>
-          <!-- <a href="/pertanyaan/{{$pertanyaan->id}}" class="btn btn-info btn-sm">show</a> -->
-      @endforeach
       </div>
       
   </div>
